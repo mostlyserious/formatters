@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if ! command -v rustywind &> /dev/null
+then
+    brew install avencera/tap/rustywind &>/dev/null
+fi
+
+if [ "$1" = "css" ]; then
+    rustywind --stdin --custom-regex="@apply\s([_a-zA\.-Z0-9\-:\[\] ]+);"
+elif [ "$1" = "js" ]; then
+    rustywind --stdin --custom-regex="(?:setAttribute\('class',|'?class'?:) '([^']+)'" \
+        | rustywind --stdin --custom-regex="(?:=|:)\s'([^']+)'" \
+        | rustywind --stdin
+elif [ "$1" = "svelte" ]; then
+    rustywind --stdin --custom-regex="(?:setAttribute\('class',|'?class'?:) '([^']+)'" \
+        | rustywind --stdin --custom-regex="@apply\s([_a-zA\.-Z0-9\-:\[\] ]+);" \
+        | rustywind --stdin --custom-regex="(?:=|:)\s'([^']+)'" \
+        | rustywind --stdin
+else
+    rustywind --stdin --custom-regex="'?class'?: '([^']+)'" \
+        | rustywind --stdin
+fi

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if ! command -v pint &> /dev/null
+then
+    composer global require laravel/pint &>/dev/null
+fi
+
+TEMP_FILE=$(mktemp)
+
+trap 'rm -f "$TEMP_FILE"' EXIT
+
+cat > "$TEMP_FILE"
+
+if pint "$TEMP_FILE" "$@" >/dev/null; then
+    cat "$TEMP_FILE"
+else
+    exit $?
+fi

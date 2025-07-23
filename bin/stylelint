@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if ! command -v stylelint &> /dev/null
+then
+    bun add stylelint postcss-html --global &>/dev/null
+fi
+
+if [ ! -f "${PWD}/stylelint.config.js" ]; then
+    printf "export default {\n    extends: 'stylelint-config-hudochenkov/order',\n    customSyntax: 'postcss-html',\n}\n" > "${PWD}/stylelint.config.js"
+    bun add stylelint-config-hudochenkov --dev &>/dev/null
+    sleep 1
+fi
+
+stylelint --fix --stdin

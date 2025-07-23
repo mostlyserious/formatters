@@ -1,0 +1,23 @@
+{
+  "name": "@mostlyserious/formatters",
+  "version": "0.9.0",
+  "type": "module",
+  "description": "✨ Formatters made to work with std in/out (useful for IDEs) and some helpful additional config.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mostlyserious/formatters.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Cornelius Ukena",
+    "email": "cornelius.ukena@mostlyserious.io"
+  },
+  "bin": {
+    "std-pint": "bin/pint",
+    "std-rustywind": "bin/rustywind",
+    "std-stylelint": "bin/stylelint"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
