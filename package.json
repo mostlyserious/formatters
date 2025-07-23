@@ -1,6 +1,6 @@
 {
   "name": "@mostlyserious/formatters",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "type": "module",
   "description": "✨ Formatters made to work with std in/out (useful for IDEs) and some helpful additional config.",
   "main": "index.js",

@@ -6,9 +6,13 @@ then
 fi
 
 if [ ! -f "${PWD}/stylelint.config.js" ]; then
-    printf "export default {\n    extends: 'stylelint-config-hudochenkov/order',\n    customSyntax: 'postcss-html',\n}\n" > "${PWD}/stylelint.config.js"
+    printf "export default {\n    extends: 'stylelint-config-hudochenkov/order',\n}\n" > "${PWD}/stylelint.config.js"
     bun add stylelint-config-hudochenkov --dev &>/dev/null
     sleep 1
 fi
 
-stylelint --fix --stdin
+if [ "$1" = "html" ]; then
+    stylelint --fix --stdin --custom-syntax=postcss-html
+else
+    stylelint --fix --stdin
+fi
