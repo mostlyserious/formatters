@@ -40,10 +40,10 @@ echo '<div class="p-4 bg-red-500 text-white">' | std-rustywind
 echo '@apply p-4 bg-red-500 text-white;' | std-rustywind css
 
 # JavaScript processing
-echo "className='p-4 bg-red-500 text-white'" | std-rustywind js
+echo "el.setAttribute('class', 'p-4 bg-red-500 text-white')" | std-rustywind js
 
 # Svelte processing
-echo '<div class="p-4 bg-red-500 text-white">' | std-rustywind svelte
+echo '<div class="p-4 bg-red-500 text-white"></div><style> .selector { @apply p-4 bg-red-500 text-white; } </style>' | std-rustywind svelte
 ```
 
 **Features:**
